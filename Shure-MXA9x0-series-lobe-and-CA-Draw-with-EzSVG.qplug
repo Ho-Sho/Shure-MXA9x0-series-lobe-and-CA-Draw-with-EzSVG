@@ -5,11 +5,11 @@
 -- Information block for the plugin
 PluginInfo = {
   Name = "Shure~Shure MXA9x0 Lobe or CA Draw with EzSVG",
-  Version = "0.0",
-  BuildVersion = "0.0.0.0",
+  Version = "1.0",
+  BuildVersion = "1.0.0.0",
   Id = "ad6824bd-42fd-4f49-ae32-c9338dc5d9e4",
   Author = "Ho",
-  Description = "Shure MXA9x0 Series Lobe or CA Draw with EzSVG Plugin"
+  Description = "Shure MXA9x0 Series Lobe or CA Draw with EzSVG plugin"
 }
 
 -- Define the color of the plugin object in the design
@@ -447,7 +447,8 @@ if Controls then
     elseif evt == TcpSocket.Events.Reconnect then
       if(DebugFunction)then print("TCP socket is Reconnecting") end
     elseif evt == TcpSocket.Events.Data then
-      buffer = buffer .. sock:Read(256)  --256 read data from socket and add to buffer
+      buffer = buffer .. sock:Read(256)  -- --256 ソケットからデータを読み取り、バッファに追加
+      --print(buffer)
       --rx.String = buffer
       GetAutoCaverage(buffer)
   
@@ -872,7 +873,7 @@ if Controls then
           end
         end
   
-        init_ca = true -- Turn off the flag ,first storage is over
+        init_ca = true -- 初回の格納が終わったのでフラグをオフにする
   
         for _, line in ipairs(lines) do
           local index, Xmin, Ymax, Xmax, Ymin = line:match(dynamic)
