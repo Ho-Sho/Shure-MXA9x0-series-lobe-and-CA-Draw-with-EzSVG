@@ -36,6 +36,7 @@ end
 SetupDebugPrint()
 
 ---------------------------------------------------------
+<<<<<<< HEAD
 rapidjson = require('rapidjson')
 EzSVG = require('EzSVG')
 
@@ -70,17 +71,60 @@ CA_strokeWidth = docSize*0.01
 
 lobe_pos = {}
 lobe_af_pos = {}
+=======
+rapidjson = require 'rapidjson'
+EzSVG = require 'EzSVG'
+
+local rx = Controls.Rx
+local docSize = Controls.DocSize.Value --must be larger than 3048
+local center = docSize ~= nil and docSize/2 or nil
+local buffer = ""
+local fillColor = "lightblue"
+local fillOpacity = 0.7
+local strokeColor = fillColor
+local strokeWidth = 1
+local cx_fillColor = "red" --X axis color
+local cy_fillColor = "green" --Y axis color
+local c_fillOpacity = 0.8
+local c_strokeColor = cx_fillColor
+local c_strokeWidth = docSize*0.001
+
+local L_fillColor = "#325a75"
+local L_fillOpacity = 0.7
+local L_strokeColor = L_fillColor
+local L_strokeWidth = docSize*0.01
+
+local L_af_fillColor = "#9bd6ed"
+local L_af_fillOpacity = 0.15
+local L_af_strokeColor = L_af_fillColor
+local L_af_strokeWidth = docSize*0.01
+
+local CA_fillColor = "gray"
+local CA_fillOpacity = 0.2
+local CA_strokeColor = "#80bbd1"
+local CA_De_strokeColor = "#f5d9b1"
+local CA_strokeWidth = docSize*0.01
+
+local lobe_pos = {}
+local lobe_af_pos = {}
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 for i = 1, 8 do
   lobe_pos[i] = {X = nil, Y = nil, Z = nil}
   lobe_af_pos[i] = {X = nil, Y = nil, Z = nil}
 end
+<<<<<<< HEAD
 lobe_dynamic = {}
 lobe_dedicated = {}
+=======
+local lobe_dynamic = {}
+local lobe_dedicated = {}
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 for i = 1, 8 do
   lobe_dynamic[i] = {Xmin = nil, Ymax = nil, Xmax = nil, Ymin = nil}
   lobe_dedicated[i] = {Xmin = nil, Ymax = nil, Xmax = nil, Ymin = nil}
 end
 
+<<<<<<< HEAD
 initialized = false
 init_ca = false
 auto_ca = Controls["AutoCaverage"]
@@ -91,6 +135,18 @@ nangle = 0
 angle = Controls["Angle"]
 xy_axis = Controls["XY_Axis"]
 axis = false
+=======
+local initialized = false
+local init_ca = false
+local auto_ca = Controls["AutoCoverage"]
+local autocoverage = false
+local nscale = 1--default
+local scale = Controls["Scale"]
+local nangle = 0
+local angle = Controls["Angle"]
+local xy_axis = Controls["XY_Axis"]
+local axis = true
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 
 ---------------------------------------------------------------------------------
 ip = Controls["IP"]
@@ -110,6 +166,7 @@ sock.EventHandler = function(sock, evt, err)
       sock:Write("< GET 0 ALL >")
       sock:Write("< GET ALL >")
     end , 1)
+<<<<<<< HEAD
   elseif evt == TcpSocket.Events.Reconnect then
     if(DebugFunction)then print("TCP socket is Reconnecting") end
   elseif evt == TcpSocket.Events.Data then
@@ -122,6 +179,18 @@ sock.EventHandler = function(sock, evt, err)
       GetLobePos(buffer, autocaverage)
     else
       GetLobePosCA(buffer, autocaverage)
+=======
+  elseif evt == TcpSocket.Events.Data then
+    buffer = buffer .. sock:Read(sock.BufferLength)  -- Buffer length
+    --print(buffer)
+    --rx.String = buffer
+    GetAutoCoverage(buffer)
+
+    if autocoverage == false then
+      GetLobePos(buffer, autocoverage)
+    else
+      GetLobePosCA(buffer, autocoverage)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
     end
 
     buffer = ""
@@ -322,7 +391,11 @@ end
 
 
 --Draw ALL SVG----------------------------------------------------------------------------------------
+<<<<<<< HEAD
 function DrawCampus(autocaverage, axis, nscale, nangle)
+=======
+function DrawCampus(autocoverage, axis, nscale, nangle)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   nscale = scale.Value
   nangle = angle.Value
   local doc = EzSVG.Document(docSize, docSize)
@@ -331,7 +404,11 @@ function DrawCampus(autocaverage, axis, nscale, nangle)
   --Draw axis
   if axis == true then DrawAxis(background) end
   --Draw Lobe or CA
+<<<<<<< HEAD
   if autocaverage == false then
+=======
+  if autocoverage == false then
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
     DrawLobe_AF(background, nangle)
     DrawLobe(background, nangle)
   else
@@ -427,7 +504,11 @@ function DrawAxis(background)
 end
 
 --Draw Lobe from Get Response-------------------------------------------------------------------
+<<<<<<< HEAD
 function GetLobePos(str, autocaverage)
+=======
+function GetLobePos(str, autocoverage)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   if type(str) == "string" then
     if str ~= nil and str ~= "" then
       local lines = {}
@@ -493,13 +574,21 @@ function GetLobePos(str, autocaverage)
       end
       --print("REP:".."lobe_pos:"..rapidjson.encode(lobe_pos) )
       --print("REP:".."lobe_af_pos:"..rapidjson.encode(lobe_af_pos) )
+<<<<<<< HEAD
       DrawCampus(autocaverage, axis, nscale, nangle)
+=======
+      DrawCampus(autocoverage, axis, nscale, nangle)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
       return lobe_num, lobe_pos, lobe_af_pos
     end
   end
 end
 --Draw CA from Get Response-------------------------------------------------------------------
+<<<<<<< HEAD
 function GetLobePosCA(str, autocaverage)
+=======
+function GetLobePosCA(str, autocoverage)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   if type(str) == "string" then
     if str ~= nil and str ~= "" then
       local lines = {}
@@ -539,7 +628,11 @@ function GetLobePosCA(str, autocaverage)
         end
       end
 
+<<<<<<< HEAD
       init_ca = true -- 初回の格納が終わったのでフラグをオフにする
+=======
+      init_ca = true -- initial flag off
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 
       for _, line in ipairs(lines) do
         local index, Xmin, Ymax, Xmax, Ymin = line:match(dynamic)
@@ -581,12 +674,17 @@ function GetLobePosCA(str, autocaverage)
       end
       --print("REP:".."lobe_dynamic:["..lobe_num.."]"..rapidjson.encode(lobe_dynamic) )
       --print("REP:".."lobe_dedicated:["..lobe_num.."]"..rapidjson.encode(lobe_dedicated) )
+<<<<<<< HEAD
       DrawCampus(autocaverage, axis, nscale, nangle)
+=======
+      DrawCampus(autocoverage, axis, nscale, nangle)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
       return lobe_num, lobe_dynamic, lobe_dedicated
     end
   end
 end
 
+<<<<<<< HEAD
 function GetAutoCaverage(str)
   local CA = "< REP AUTO_COVERAGE (%a+) >"
   local match = str:match(CA)
@@ -595,10 +693,45 @@ function GetAutoCaverage(str)
     auto_ca.EventHandler("ON")
   elseif match == "OFF" then
     auto_ca.EventHandler("OFF")
+=======
+function GetAutoCoverage(str)
+  if str:find("MXA920") then
+    sock:Write("< GET AUTO_COVERAGE >")
+    Timer.CallAfter(function()
+      sock:Write("< GET 0 CA_DYNAMIC >")
+      sock:Write("< GET 0 CA_DEDICATED >")
+    end, 0.5)
+  elseif  str:find("MXA910") then
+    auto_ca.Boolean = false
+    auto_ca.Legend = "CA OFF"
+    auto_ca.Color = "gray"
+    autocoverage = false
+    DrawCampus(autocoverage, axis, nscale, nangle)
+  end
+  if type(str) == "string" and str ~= "" then
+    local CA = "< REP AUTO_COVERAGE (%a+) >"
+    local match = str:match(CA)
+    if match ~= nil then
+      local flg = (match == "ON")
+      --print(match, flg)
+
+      if flg then
+        sock:Write("< GET 0 CA_DYNAMIC >")
+        sock:Write("< GET 0 CA_DEDICATED >")
+      end
+
+      if flg ~= auto_ca.Boolean then
+        auto_ca.Boolean = flg
+        autocoverage = flg
+        auto_ca.EventHandler()
+      end
+    end
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   end
 end
 
 --EventHandler-----------------------------------------------------------------------
+<<<<<<< HEAD
 auto_ca.EventHandler = function(arg)
   if arg == "OFF" then
     auto_ca.Boolean = false
@@ -613,13 +746,37 @@ auto_ca.EventHandler = function(arg)
   DrawCampus(autocaverage)
 end
 auto_ca.EventHandler("OFF")
+=======
+auto_ca.EventHandler = function()
+  if auto_ca.Boolean == false then
+    auto_ca.Legend = "CA OFF"
+    auto_ca.Color = "gray"
+    --print("< SET AUTO_COVERAGE OFF >")
+    sock:Write("< SET AUTO_COVERAGE OFF >")
+  else
+    auto_ca.Legend = "CA ON"
+    auto_ca.Color = "blue"
+    --print("< SET AUTO_COVERAGE ON >")
+    sock:Write("< SET AUTO_COVERAGE ON >")
+    Timer.CallAfter(function()
+      sock:Write("< GET 0 CA_DYNAMIC >")
+      sock:Write("< GET 0 CA_DEDICATED >")
+    end, 0.5)
+  end
+  DrawCampus(autocoverage, axis, nscale, nangle)
+end
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 
 --scaling
 scale.EventHandler = function()
   -- Get the current scale value
   nscale = scale.Value
   -- Create a new SVG document
+<<<<<<< HEAD
   DrawCampus(autocaverage, axis, nscale, nangle)
+=======
+  DrawCampus(autocoverage, axis, nscale, nangle)
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 end
 scale.EventHandler()
 
@@ -629,7 +786,12 @@ angle.EventHandler = function()
   if math.abs(angle.Value) == 360 then
     angle.Value = 0
   end
+<<<<<<< HEAD
   DrawCampus(autocaverage, axis, nscale, nangle)
+=======
+  DrawCampus(autocoverage, axis, nscale, nangle)
+
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
 end
 
 --Axis ON/OFF
@@ -643,6 +805,15 @@ xy_axis.EventHandler = function(arg)
     xy_axis.Legend = axis and "ON" or "OFF"
     xy_axis.Color = axis and "green" or "gray"
   end
+<<<<<<< HEAD
   DrawCampus(autocaverage, axis, nscale, nangle)
 end
 xy_axis.EventHandler("OFF")
+=======
+  DrawCampus(autocoverage, axis, nscale, nangle)
+end
+xy_axis.EventHandler("OFF")
+
+auto_ca.Boolean = false
+--auto_ca.EventHandler()
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)

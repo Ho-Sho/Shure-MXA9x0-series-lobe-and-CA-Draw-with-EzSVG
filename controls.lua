@@ -34,7 +34,11 @@ table.insert(ctrls, {
 --   UserPin = false,
 -- })
 table.insert(ctrls, {
+<<<<<<< HEAD
   Name = "AutoCaverage",
+=======
+  Name = "AutoCoverage",
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   ControlType = "Button",
   ButtonType = "Toggle",
   PinStyle = "Both",

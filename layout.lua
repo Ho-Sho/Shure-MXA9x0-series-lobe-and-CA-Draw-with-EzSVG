@@ -59,7 +59,11 @@ if CurrentPage == "Control" then
   })
   table.insert(graphics,{
     Type = "Text",
+<<<<<<< HEAD
     Text = "Rotale Angle",
+=======
+    Text = "Rotate Angle",
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
     Position = {560,80},
     Color = Colors.Black,
     Size = {130,30},
@@ -77,7 +81,11 @@ if CurrentPage == "Control" then
   })
   table.insert(graphics,{
     Type = "Text",
+<<<<<<< HEAD
     Text = "AutoCaverage Mode",
+=======
+    Text = "AutoCoverage Mode",
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
     Position = {560,155},
     Color = Colors.Black,
     Size = {130,30},
@@ -134,8 +142,13 @@ if CurrentPage == "Control" then
     Position = {690,125},
     Size = {55,30}
   }
+<<<<<<< HEAD
   layout["AutoCaverage"] = {
     PrettyName = "AutoCaverage",
+=======
+  layout["AutoCoverage"] = {
+    PrettyName = "AutoCoverage",
+>>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
     Style = "Button",
     FontSize = 12,
     Color = Colors.White,
