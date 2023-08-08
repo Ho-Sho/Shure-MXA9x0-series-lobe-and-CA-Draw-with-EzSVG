@@ -12,11 +12,7 @@ end
 
 -- The name that will initially display when dragged into a design
 function GetPrettyName(props)
-<<<<<<< HEAD
-  return "Shure MXA9x0 Series Lobe or CA Draw with EzSVG Plugin, version " .. PluginInfo.Version
-=======
-  return "Shure MXA9*0 Lobe CA Draw SVG Plugin, version " .. PluginInfo.BuildVersion
->>>>>>> 1f7f74f (Bug fixes at the time of the MXA920)
+  return "Shure MXA9*0 Lobe CA Draw SVG Plugin, version " .. PluginInfo.Version
 end
 
 -- Optional function used if plugin has multiple pages
