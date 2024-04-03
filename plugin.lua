@@ -1,6 +1,6 @@
 -- Shure MXA Plugin
 -- by Ho
--- March 2023
+-- April 2024
 
 -- Information block for the plugin
 --[[ #include "info.lua" ]]
