@@ -6,6 +6,8 @@ the data for each one is retained, which may result in drawing unused Lobes or C
 
 The required operating environment is QSD9.4 or later with a version of EzSVG that is compatible.
 
+![Alt text](<MXA9x0 Love CA Draw SVG v1.1.0.gif>)
+
 ![Alt text](screenshot-1.png)
 
 ![Alt text](screenshot-2.png)
