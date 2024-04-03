@@ -588,6 +588,44 @@ end
 
 --Start event based logic
 if Controls then
+  --Debug Function
+  ---------------------------------------------------------
+  function DebugFormat(string) -- Format strings containing non-printable characters so we can see what they are
+    local visual = ""
+    for i=1,#string do
+      local byte = string:sub(i,i)
+      if string.byte(byte) >= 32 and string.byte(byte) <= 126 then
+        visual = visual..byte
+      else
+        visual = visual..string.format("[%02xh]",string.byte(byte))
+      end
+    end
+    return visual
+  end
+  
+  DebugTx = false
+  DebugRx = false
+  DebugFunction = false
+  DebugPrint = Properties["Debug Print"].Value
+  
+  -- A function to determine common print statement scenarios for troubleshooting
+  function SetupDebugPrint()
+    if DebugPrint=="Tx/Rx" then
+      DebugTx,DebugRx=true,true
+    elseif DebugPrint=="Tx" then
+      DebugTx=true
+    elseif DebugPrint=="Rx" then
+      DebugRx=true
+    elseif DebugPrint=="Function Calls" then
+      DebugFunction=true
+    elseif DebugPrint=="All" then
+      DebugTx,DebugRx,DebugFunction=true,true,true
+    end
+  end
+  
+  SetupDebugPrint()
+  
+  ---------------------------------------------------------
   rapidjson = require 'rapidjson'
   EzSVG = require 'EzSVG'
   
