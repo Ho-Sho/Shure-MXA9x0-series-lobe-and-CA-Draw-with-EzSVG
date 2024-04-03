@@ -34,16 +34,13 @@ table.insert(ctrls, {
 --   UserPin = false,
 -- })
 table.insert(ctrls, {
-<<<<<<< HEAD
-  Name = "AutoCaverage",
-=======
   Name = "AutoCoverage",
->>>>>>> a2e5c9e (Bug fixes at the time of the MXA920)
   ControlType = "Button",
   ButtonType = "Toggle",
   PinStyle = "Both",
   Count = 1,
-  UserPin = true
+  UserPin = true,
+  DefaultValue = "CA OFF"
 })
 table.insert(ctrls, {
   Name = "Scale",
@@ -71,6 +68,90 @@ table.insert(ctrls, {
   Name = "XY_Axis",
   ControlType = "Button",
   ButtonType = "Toggle",
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true,
+  DefaultValue = "OFF"
+})
+table.insert(ctrls, {
+  Name = "Lobe_Opacity",
+  ControlType = "Knob",
+  ControlUnit = "Float",
+  Min = 0,
+  Max = 1,
+  DefaultValue = 0.15,
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "Lobe_FillColor",
+  ControlType = "Text",
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "Lobe_StrokeWidth",
+  ControlType = "Knob",
+  ControlUnit = "Integer",
+  Min = 5,
+  Max = 50,
+  DefaultValue = 20,
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "CA_Opacity",
+  ControlType = "Knob",
+  ControlUnit = "Float",
+  Min = 0,
+  Max = 1,
+  DefaultValue = 0.15,
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "CA_StrokeWidth",
+  ControlType = "Knob",
+  ControlUnit = "Integer",
+  Min = 5,
+  Max = 50,
+  DefaultValue = 20,
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "CA_De_StrokeWidth",
+  ControlType = "Knob",
+  ControlUnit = "Integer",
+  Min = 5,
+  Max = 50,
+  DefaultValue = 20,
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "CA_FillColor",
+  ControlType = "Text",
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "ActiveColor",
+  ControlType = "Text",
+  PinStyle = "Both",
+  Count = 1,
+  UserPin = true
+})
+table.insert(ctrls, {
+  Name = "LEDLightColor",
+  ControlType = "Text",
   PinStyle = "Both",
   Count = 1,
   UserPin = true
